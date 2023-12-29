@@ -12,16 +12,17 @@ rem Pulling changes from GitHub...
 git pull https://github.com/tanjim750/wafid_local
 
 rem Install dependencies
-pip install -r requirements.txt
-
-rem Start Django development server
-python manage.py runserver
-
-rem Wait for the server to start
-timeout /t 5
+pip install anticaptchaofficial==1.0.59
+pip install beautifulsoup4==4.12.2
+pip install Django==5.0
+pip install h11==0.14.0
+pip install requests==2.31.0
+pip install selenium==4.16.0
 
 rem Open the default browser to the Django development server address
 start "" http://127.0.0.1:8000/
 
+rem Start Django development server
+python manage.py runserver
 
 endlocal
