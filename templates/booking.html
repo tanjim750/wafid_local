@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+<title>Home</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+<meta name="robots" content="noindex, follow">
+</head>
+<body>
+<div class="container">
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/">Nur Travel</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
+            <ul class="navbar-nav ">
+                <li class="nav-item">
+                <a class="nav-link" aria-current="page" href="/">Home</a>
+                </li>
+                <li class="nav-item">
+                <a class="nav-link" href="">Paid Links</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'booking_links' %}">Booking Links</a>
+                </li>
+                {% if request.user.is_superuser %}
+                    <li class="nav-item">
+                        <a class="nav-link" aria-current="page" href="{% url 'admin:index' %}">Admin Dashboard</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" aria-current="page" href="{% url 'admin:index' %}app/cardinfo/add/">Add Card</a>
+                    </li>
+                {% endif %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+                </li>
+            </ul>
+            </div>
+        </div>
+    </nav>
+
+    <form method="post" id="booking_form"> {% csrf_token %}
+        <div class="row mt-5">
+            <div class="col-md-4 mb-3">
+                <label for="exampleFormControlInput1" class="form-label">First Name</label>
+                <input type="text" name="fname" class="form-control" placeholder="First Name" required>
+            </div>
+            <div class="col-md-4 mb-3">
+                <label for="exampleFormControlInput1" class="form-label">Last Name</label>
+              <input type="text" name="lname" class="form-control" placeholder="Last Name" required>
+            </div>
+            <div class="col-md-4 mb-3">
+                <label for="exampleFormControlInput1" class="form-label">Date of birth</label>
+              <input type="text" name="dob" class="form-control" placeholder="date/month/year" required>
+            </div>
+            <div class="col-md-4 mb-3">
+                <label for="exampleFormControlInput1" class="form-label">Gender</label>
+                <select name="gender" id="" class="form-control" required>
+                    <option selected disabled>------</option>
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                </select>
+              </div>
+              <div class="col-md-4 mb-3">
+                <label for="exampleFormControlInput1" class="form-label">Marital status</label>
+                <select name="marital_status" id="" class="form-control" required>
+                    <option selected disabled>------</option>
+                    <option value="Married">Married</option>
+                    <option value="Single">Single</option>
+                </select>
+              </div>
+            <div class="col-md-4 mb-3">
+                <label for="exampleFormControlInput1" class="form-label">Passport Number</label>
+                <input type="text" name="passport_num" class="form-control" placeholder="Passport Number" required>
+            </div>
+            <div class="col-md-4 mb-3">
+                <label for="exampleFormControlInput1" class="form-label">Confirm Passport Number</label>
+                <input type="text" name="cpassport_num" class="form-control" placeholder="Confirm Passport Number" required>
+            </div>
+            <div class="col-md-4 mb-3">
+                <label for="exampleFormControlInput1" class="form-label">Passport Issue Date</label>
+                <input type="text" name="passport_issue_date" class="form-control" placeholder="date/month/year" required>
+            </div>
+            <div class="col-md-4 mb-3">
+                <label for="exampleFormControlInput1" class="form-label">Passport Expiry Date</label>
+                <input type="text" name="passport_expiry" class="form-control" placeholder="date/month/year" required>
+            </div>
+            <div class="col-md-4 mb-3">
+                <label for="exampleFormControlInput1" class="form-label">First Name</label>
+                <input type="text" name="cfname" class="form-control" placeholder="First Name" required>
+            </div>
+            <div class="col-md-4 mb-3">
+                <label for="exampleFormControlInput1" class="form-label">Last Name</label>
+              <input type="text" name="clname" class="form-control" placeholder="Last Name" required>
+            </div>
+            <div class="col-md-4 mb-3">
+                <label for="exampleFormControlInput1" class="form-label">Date of birth</label>
+              <input type="text" name="cdob" class="form-control" placeholder="date/month/year" required>
+            </div>
+            <div class="col-md-4 mb-3">
+                <label for="exampleFormControlInput1" class="form-label">Agent Name</label>
+                <input type="text" name="agent" class="form-control" placeholder="Agent Name" required>
+            </div>
+            <div class="col-md-4 mb-3">
+                <label for="exampleFormControlInput1" class="form-label">Medical Name</label>
+              <input type="text" name="medical" class="form-control" placeholder="Medical Name" required>
+            </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary">
+            Save and Continue
+        </button>
+    </form>
+
+</div>
+
+<script src="{% static 'home/vendor/jquery/jquery-3.2.1.min.js' %}"></script>
+
+<script src="{% static 'home/vendor/bootstrap/js/popper.js' %}"></script>
+<script src="{% static 'home/vendor/bootstrap/js/bootstrap.min.js' %}"></script>
+
+<script src="{% static 'home/vendor/select2/select2.min.js' %}"></script>
+
+<script src="{% static 'home/vendor/perfect-scrollbar/perfect-scrollbar.min.js' %}"></script>
+
+<script>
+    let form = document.querySelector('form#booking_form');
+    form.addEventListener('submit', function(event){
+        event.preventDefault();
+        let fname = form.querySelector('input[name=fname]');
+        let cfname = form.querySelector('input[name=cfname]');
+        let lname = form.querySelector('input[name=lname]');
+        let clname = form.querySelector('input[name=clname]');
+        let dob = form.querySelector('input[name=dob]');
+        let cdob = form.querySelector('input[name=cdob]');
+        let gender = form.querySelector('select[name=gender]');
+        let marital_status = form.querySelector('select[name=marital_status]');
+        let passport_num = form.querySelector('input[name=passport_num]');
+        let cpassport_num = form.querySelector('input[name=cpassport_num]');
+        let passport_issue_date = form.querySelector('input[name=passport_issue_date]');
+        let passport_issue_place = form.querySelector('input[name=passport_issue_place]');
+        let passport_expiry = form.querySelector('input[name=passport_expiry]');
+
+        if(fname.value != cfname.value){
+            fname.style.borderColor = "red";
+            cfname.style.borderColor = "red";
+        }else{
+            fname.style.borderColor = "gray";
+            cfname.style.borderColor = "gray";
+        }
+        if(lname.value != clname.value){
+            lname.style.borderColor = "red";
+            clname.style.borderColor = "red";
+        }else{
+            lname.style.borderColor = "gray";
+            clname.style.borderColor = "gray";
+        }
+        if(dob.value != cdob.value){
+            dob.style.borderColor = "red";
+            cdob.style.borderColor = "red";
+        }else{
+            dob.style.borderColor = "gray";
+            cdob.style.borderColor = "gray";
+        }
+        if(passport_num.value != cpassport_num.value){
+            passport_num.style.borderColor = "red";
+            cpassport_num.style.borderColor = "red";
+        }else{
+            passport_num.style.borderColor = "gray";
+            cpassport_num.style.borderColor = "gray";
+        }
+        if(gender.value == "------"){
+            gender.style.borderColor = "red";
+        }else{
+            gender.style.borderColor = "gray";
+        }
+        if(marital_status.value == "------"){
+            marital_status.style.borderColor = "red";
+        }else{
+            marital_status.style.borderColor = "gray";
+        }
+        if(fname.value === cfname.value && lname.value === clname.value && 
+            dob.value === cdob.value && passport_num.value === cpassport_num.value && 
+            gender.value != "------" && marital_status.value != "------"){
+                form.submit()
+            }
+    });
+</script>
+
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-23581568-13');
+</script>
+
+<script src="{% static 'home/js/main.js' %}"></script>
+<script defer src="https://static.cloudflareinsights.com/beacon.min.js/v84a3a4012de94ce1a686ba8c167c359c1696973893317" integrity="sha512-euoFGowhlaLqXsPWQ48qSkBSCFs3DPRyiwVu3FjR96cMPx+Fr+gpWRhIafcHwqwCqWS42RZhIudOvEI+Ckf6MA==" data-cf-beacon='{"rayId":"83779cb70b24ba4a","b":1,"version":"2023.10.0","token":"cd0b4b3a733644fc843ef0b185f98241"}' crossorigin="anonymous"></script>
+</body>
+</html>

@@ -1,0 +1,33 @@
+i.icon.gcc-icon {
+    font-size: 0.8em;
+    background-color: #E2F1FC;
+    color: #1D94ED;
+    border-radius: 50%;
+    width: 2rem;
+    height: 2rem;
+    line-height: 2rem;
+}
+
+.success-icon {
+    color: #66b066;
+    text-shadow: 0 0 2px rgba(0, 0, 0, 0.14);
+    position: initial;
+    margin-top: 5px;
+    display: block;
+}
+
+.info-icon {
+    color: #5c5cacc7;;
+    text-shadow: 0 0 2px rgba(0, 0, 0, 0.14);
+    position: absolute;
+    top: 2rem;
+}
+
+.ui.button i.icon.btn-icon {
+    opacity: 1;
+}
+
+.support-icon {
+    width: 1rem !important;
+    margin: 5px !important;
+}

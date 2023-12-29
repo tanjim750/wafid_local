@@ -1,0 +1,17 @@
+.medical-center-field {
+    display: none;
+}
+
+.agree-checkbox {
+    margin-top: 50px;
+}
+
+.agree-checkbox input {
+    margin-top: 4px;
+    margin-right: 10px;
+}
+
+.ui.form .field.inline.agree-checkbox > label {
+    line-height: 16px;
+    font-weight: normal;
+}

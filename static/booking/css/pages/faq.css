@@ -1,0 +1,66 @@
+
+.faq-accordion .content {
+    top: -1rem;
+
+}
+
+.faq-accordion .title {
+    color: #3737e4 !important;
+    position: relative;
+    width: 100%;
+    height: auto ;
+    border: none !important;
+
+    }
+
+
+.faq-card-img {
+    margin-left: 93%;
+}
+
+.faq-accordion .title .title-text {
+    /* display: inline-block !important;
+    position: absolute;
+    margin: 20px !important; */
+    color: black;
+    margin-top: 5px
+    margin-bottom: 10px
+}
+
+.ui.styled.accordion .active.title {
+    margin: inherit !important;
+}
+
+.text {
+
+    font-style: normal !important;
+    font-weight: 400 !important;
+    font-size: 18px !important;
+    line-height: 38px !important;
+
+    letter-spacing: -0.2px !important;
+    text-transform: capitalize !important;
+
+    color: #7E7E7E !important;
+
+}
+
+.contact-us-section {
+    margin-top: 2rem;
+}
+
+.faq-email-section {
+    margin-top: 1rem;
+}
+
+.faq-border {
+    border-radius: none !important;
+    box-shadow: none !important;
+}
+
+.faq-card {
+    background: #FFFFFF !important;
+    border: -0.5px solid #E1E1E1 !important;
+    border-radius: 12px !important;
+    width: 100% !important;
+}

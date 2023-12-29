@@ -1,0 +1,43 @@
+.notification-message a {
+    color: black;
+}
+
+.notification-message b {
+    font-size: 110%;
+}
+
+.show-more {
+    text-align: center;
+}
+
+.dot {
+    height: 6px;
+    width: 6px;
+    background-color: #0E6EB8;
+    border-radius: 50%;
+    display: inline-block;
+    margin-right: 5px;
+}
+
+.notification-message {
+    display: inline-block;
+    width: 250px;
+    vertical-align: top;
+}
+
+.time-since {
+    color: grey;
+    padding-left: 15px;
+    padding-top: 5px;
+}
+
+.notifications-dropdown .menu .item {
+    width: 300px;
+    display:inline;
+    align:right;
+}
+
+.notifications-dropdown .menu .menu .item {
+    white-space: normal;
+    border-bottom: 1px solid #DEDFDF;
+}

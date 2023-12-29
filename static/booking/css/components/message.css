@@ -1,0 +1,166 @@
+.ui.message.message--success {
+    background-color: #2db84b;
+    color: #fff;
+    -webkit-box-shadow: 0 0 0 1px #fff inset, 0 0 0 0 transparent;
+    box-shadow: 0 0 0 1px #fff inset, 0 0 0 0 transparent;
+}
+.ui.message.message--error {
+    background-color: #cc2029;
+    color: #fff;
+    -webkit-box-shadow: 0 0 0 1px #fff inset, 0 0 0 0 transparent;
+    box-shadow: 0 0 0 1px #fff inset, 0 0 0 0 transparent;
+}
+.ui.message .message__content {
+    font-size: 1rem;
+    font-weight: bold;
+}
+.ui.message>.close.icon {
+    top: 1em;
+    right: 1.5em;
+}
+
+.modal-message {
+    min-height: 6rem;
+}
+.modal-message .message-icon {
+    width: 5rem;
+    height: 5rem;
+    float: left;
+    margin: 1rem;
+}
+.modal-message .message-icon .icon {
+    font-size: 4rem;
+    color: #66b066;
+    text-shadow: 0 0 2px rgba(0, 0, 0, 0.14);
+}
+.modal-message .header {
+    padding-top: 1rem;
+    font-size: 1.3rem;
+    line-height: 2rem;
+}
+.modal-message .content {
+    line-height: 2rem;
+}
+
+.ui.message.booking-message {
+    background-color: #fff;
+    border: 1px solid #E1E1E1;
+    border-radius: 12px;
+    box-sizing: border-box;
+}
+
+.ui.message.booking-message .content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 32px;
+
+    letter-spacing: -0.2px;
+    color: #373737;
+    padding: 0 1% ;
+
+}
+
+.ar {
+    direction: rtl;
+    padding-bottom: 1%;
+}
+
+.message-content {
+    display: flex;
+    flex-direction: row;
+}
+
+.ui.message.booking-message .content .item {
+    max-width: 530px;
+}
+
+
+.ui.message.booking-message .content .item.ar {
+    direction:rtl;
+}
+
+.ui.message.booking-message .image {
+      margin: 8px;
+}
+
+.ui.message.announcement-message {
+    background-color: #fff;
+    padding-left: 12px;
+    border-left-color: #6F1D46;
+    border-left-width: 5px;
+    border-left-style: solid;
+    border-radius: 12px
+}
+
+.ui.message.announcement-message .content {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-right: 10px;
+    max-width: 90%;
+
+    margin-top: 3px;
+    margin-bottom: 3px;
+}
+
+.ui.message.announcement-message .message-content {
+    overflow: hidden;
+}
+
+.ui.message.announcement-message .header {
+    overflow: hidden;
+}
+
+
+.ui.message.announcement-message .button {
+    background-color: #1ebc30;
+    color: white;
+}
+
+.ui.message.announcement-message .icon.info.circle {
+    color: #6F1D46;
+    font-size: 1.3rem;
+    margin-bottom: 20px;
+}
+
+.ui.message.announcement-message.circular {
+    border-left-color: #f2711c;
+}
+
+.ui.message.announcement-message.circular .button {
+    background-color: #f2711c;
+}
+
+.ui.message.announcement-message.circular .icon.info.circle {
+    color: #f2711c;
+}
+
+
+.ui.message.announcement-message.regulation {
+    border-left-color: #1ebc30;
+}
+
+.ui.message.announcement-message.regulation .button {
+    background-color: #1ebc30;
+}
+
+.ui.message.announcement-message.regulation .icon.info.circle {
+    color: #1ebc30;
+}
+
+.ui.message.announcement-message.announcement {
+    border-left-color: #2185d0;
+}
+
+.ui.message.announcement-message.announcement .button {
+    background-color: #2185d0;
+}
+
+.ui.message.announcement-message.announcement .icon.info.circle {
+    color: #2185d0;
+}

@@ -1,0 +1,10 @@
+.ui.card.gcc-card {
+    background-color: #fff;
+    border-radius: 12px;
+    border: 0.5px solid #E1E1E1 !important;
+    box-shadow: none !important;
+    width: 100%;
+}
+.ui.card.gcc-card > .content {
+    padding: 0;
+}

@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+<title>Home</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link rel="icon" type="image/png" href="{% static 'home/images/icons/favicon.ico' %}" />
+
+<link rel="stylesheet" type="text/css" href="{% static 'home/vendor/bootstrap/css/bootstrap.min.css' %}">
+
+<link rel="stylesheet" type="text/css" href="{% static 'home/fonts/font-awesome-4.7.0/css/font-awesome.min.css' %}">
+
+<link rel="stylesheet" type="text/css" href="{% static 'home/vendor/animate/animate.css' %}">
+
+<link rel="stylesheet" type="text/css" href="{% static 'home/vendor/select2/select2.min.css' %}">
+
+<link rel="stylesheet" type="text/css" href="{% static 'home/vendor/perfect-scrollbar/perfect-scrollbar.css' %}">
+
+<link rel="stylesheet" type="text/css" href="{% static 'home/css/util.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'home/css/main.css' %}">
+<meta name="robots" content="noindex, follow">
+</head>
+<body>
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+	<div class="container-fluid">
+		<a class="navbar-brand" href="/">Nur Travel</a>
+		<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+		<span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="collapse navbar-collapse justify-content-center" id="navbarNav">
+		<ul class="navbar-nav ">
+			<li class="nav-item">
+			<a class="nav-link" aria-current="page" href="/">Home</a>
+			</li>
+			<li class="nav-item">
+			<a class="nav-link" href="">Paid Links</a>
+			</li>
+			<li class="nav-item">
+			<a class="nav-link" href="{% url 'booking' %}">Booking</a>
+			</li>
+			{% if request.user.is_superuser %}
+				<li class="nav-item">
+					<a class="nav-link" aria-current="page" href="{% url 'admin:index' %}">Admin Dashboard</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" aria-current="page" href="{% url 'admin:index' %}app/cardinfo/add/">Add Card</a>
+				</li>
+			{% endif %}
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+            </li>
+		</ul>
+		</div>
+	</div>
+</nav>
+
+<div class="limiter">
+<div class="container-table100">
+<div class="wrap-table100">
+<div class="table100 ver1 m-b-110">
+<div class="table100-head">
+<table>
+<thead>
+<tr class="row100 head">
+<th class="cell100 column1">
+    Link
+</th>
+<th class="cell100 column2"> <span contenteditable="true" style="display: block;" onblur="search_booking(this)">Passport</span></th>
+<th class="cell100 column3">Name</th>
+<th class="cell100 column4">Agent</th>
+<th class="cell100 column5">Medical</th>
+<th class="cell100 column6">
+    <button style="padding:0 5px 0 5px; color:rgb(39, 38, 38); background-color: rgb(230, 99, 81); width: 100%;" onclick="delete_all(this)">
+        Clear
+    </button>
+</th>
+</tr>
+</thead>
+</table>
+</div>
+<div class="table100-body js-pscroll">
+<table>
+<tbody id="booking-datas">
+{% for booking in bookings %}
+	<tr class="row100 body">
+        <td class="cell100 column1">
+            <input type="text" id="link" value="{{booking.pay_link}}">{{booking.date}} &nbsp;
+            <i class="fa fa-copy" data-id="{{booking.id}}" style="font-size: 25px; {% if booking.is_copied %}color:blue{% endif %}" onclick="copy_links(this)"></i>
+            <img src="{% static 'home/images/remove.png' %}" data-id="{{booking.id}}" alt="remove" title="Remove the link" style="height: 30px; width: 30px;" onclick="removeLink(this)">
+        </td>
+		<td class="cell100 column2" id="status-{{booking.sno}}">{{booking.passport}}</td>
+		<td class="cell100 column3" >{{booking.user.username}}</td>
+		<td class="cell100 column4" >{{booking.agent_name}}</td>
+		<td class="cell100 column5" >{{booking.medical_name}}</td>
+        <td class="cell100 column6">
+            <button style="padding: 5px; background-color: aquamarine; width: 100%;" data-id="{{booking.id}}" onclick="book_again(this)">
+                Book
+            </button>
+		</td>
+	</tr>
+{% endfor %}
+</tbody>
+</table>
+</div>
+</div>
+
+</div>
+</div>
+</div>
+
+<script src="{% static 'home/vendor/jquery/jquery-3.2.1.min.js' %}"></script>
+
+<script src="{% static 'home/vendor/bootstrap/js/popper.js' %}"></script>
+<script src="{% static 'home/vendor/bootstrap/js/bootstrap.min.js' %}"></script>
+
+<script src="{% static 'home/vendor/select2/select2.min.js' %}"></script>
+
+<script src="{% static 'home/vendor/perfect-scrollbar/perfect-scrollbar.min.js' %}"></script>
+<script>
+		$('.js-pscroll').each(function(){
+			var ps = new PerfectScrollbar(this);
+
+			$(window).on('resize', function(){
+				ps.update();
+			})
+		});
+
+	</script>
+<script>
+    function delete_all(e){
+        let url = "{% url 'booking_links' %}";
+        let confirmation = confirm("Are you sure you want to delete")
+        if (confirmation == true){
+            $.getJSON(url+"?action=delete_all")
+            .done(function(data){
+                alert(data.text)
+            })
+            .fail(function(jqXHR, textStatus, errorThrown){
+                console.log(errorThrown);
+            });
+        }
+    }
+
+    function search_booking(e){
+        let url = "{% url 'booking_links' %}";
+        let passport = e.textContent;
+        let tbody = document.querySelector('tbody#booking-datas');
+
+        $.getJSON(url+"?action=search_booking&passport="+passport)
+        .done(function(data){
+            if(data.status == 200){
+                console.log(data.bookings);
+                tbody.innerHTML = "";
+                for(let booking of data.bookings){
+                    let row_html = `
+                        <tr class="row100 body">
+                            <td class="cell100 column1">
+                                <input type="text" id="link" value="${booking.pay_link}">${booking.date} &nbsp;
+                                <i class="fa fa-copy" data-id="${booking.id}" style="font-size: 25px; ${"color:blue" ? booking.is_copied:"" }" onclick="copy_links(this)"></i>
+                                <img src="{% static 'home/images/remove.png' %}" data-id="${booking.id}" alt="remove" title="Remove the link" style="height: 30px; width: 30px;" onclick="removeLink(this)">
+                            </td>
+                            <td class="cell100 column2">${booking.passport}</td>
+                            <td class="cell100 column3" >${booking.username}</td>
+                            <td class="cell100 column4" >${booking.agent_name}</td>
+                            <td class="cell100 column5" >${booking.medical_name}</td>
+                            <td class="cell100 column6">
+                                <button style="padding: 5px; background-color: aquamarine; width: 100%;" data-id="${booking.id}" onclick="book_again(this)">
+                                    Book
+                                </button>
+                            </td>
+                        </tr>
+                    `;
+                    tbody.innerHTML += row_html;
+                };
+            }else{
+                alert(data.error);
+            }
+        })
+        .fail(function(jqXHR, textStatus, errorThrown){
+            console.log(errorThrown);
+        });
+    }
+
+	function copy_links(e){
+        let url = "{% url 'booking_links' %}";
+        let id = e.dataset.id;
+        let row = e.parentNode;
+        let link = row.querySelector('input[id=link]');
+
+        $.getJSON(url+"?action=set_as_copied&id="+id)
+        .done(function(data){
+            if(data.status == 200){
+                e.style.color = "blue";
+                link.select();
+                link.setSelectionRange(0,99999);
+                document.execCommand('copy');
+            }else{
+                alert(data.error);
+            }
+        })
+        .fail(function(jqXHR, textStatus, errorThrown){
+            console.log(errorThrown);
+        });
+        
+    }
+
+    function book_again(e){
+        let url = "{% url 'book_again' %}";
+        let id = e.dataset.id;
+        let row = e.parentNode.parentNode;
+        let row_index = row.rowIndex;
+        e.textContent = "Loading...";
+
+        $.getJSON(url+"?action=book_again&id="+id)
+        .done(function(data){
+            if(data.status == 200){
+                e.textContent = "Booked!";
+                console.log(data.booking);
+                console.log(data.booking.passport);
+                console.log(data.booking.pay_link);
+                let newRow = row.parentNode.insertRow(parseInt(row_index) + 1);
+                newRow.style.color = "green";
+                // Insert cells into the new row
+                let cell1 = newRow.insertCell(0);
+                let cell2 = newRow.insertCell(1);
+                let cell3 = newRow.insertCell(2);
+                let cell4 = newRow.insertCell(3);
+                let cell5 = newRow.insertCell(4);
+                let cell6 = newRow.insertCell(5);
+                let booking = data.booking;
+                cell1.innerHTML = `
+                    <input type="text" id="link" value="${booking.pay_link}">${booking.date} &nbsp;
+                    <i class="fa fa-copy" data-id="${booking.id}" style="font-size: 25px; ${"color:blue" ? booking.is_copied:"" }" onclick="copy_links(this)"></i>
+                    <img src="{% static 'home/images/remove.png' %}" data-id="${booking.id}" alt="remove" title="Remove the link" style="height: 30px; width: 30px;" onclick="removeLink(this)">
+                `;
+                cell2.textContent = booking.passport;
+                cell3.textContent = booking.username;
+                cell4.textContent = booking.agent_name;
+                cell5.textContent = booking.medical_name;
+                cell6.innerHTML = `
+                    <button style="padding: 5px; background-color: aquamarine; width: 100%;" data-id="${booking.id}" onclick="book_again(this)">
+                        Book
+                    </button>
+                `;
+                console.log("Successfully Booked!");
+            }else{
+                e.textContent = "Failed";
+                e.style.color = "red";
+                alert(data.error);
+            }
+        })
+        .fail(function(jqXHR, textStatus, errorThrown){
+            e.textContent = "Failed";
+            e.style.color = "red";
+            console.log(errorThrown);
+        });
+        
+    }
+
+    function removeLink(event){
+		url = "{% url 'booking_links' %}";
+
+		let row = event.parentNode.parentNode;
+		let id = event.dataset.id;
+		let confirmation = confirm("Are you sure you want to delete");
+
+        if(confirmation == true){
+            $.getJSON(url+"?action=remove_link&id="+id)
+                .done(function(data){
+                    if(data.status == 200){
+                        row.remove();
+                        
+                    }else{
+                        alert(data.error);
+                    }
+                })
+                .fail(function(jqXHR, textStatus, errorThrown){
+                    console.log(errorThrown);
+                });
+        }
+        }
+</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-23581568-13"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-23581568-13');
+</script>
+
+<script src="{% static 'home/js/main.js' %}"></script>
+<script defer src="https://static.cloudflareinsights.com/beacon.min.js/v84a3a4012de94ce1a686ba8c167c359c1696973893317" integrity="sha512-euoFGowhlaLqXsPWQ48qSkBSCFs3DPRyiwVu3FjR96cMPx+Fr+gpWRhIafcHwqwCqWS42RZhIudOvEI+Ckf6MA==" data-cf-beacon='{"rayId":"83779cb70b24ba4a","b":1,"version":"2023.10.0","token":"cd0b4b3a733644fc843ef0b185f98241"}' crossorigin="anonymous"></script>
+</body>
+</html>

@@ -1,0 +1,32 @@
+.captcha-container {
+    display: flex;
+    max-width: 260px;
+    justify-content: space-between;
+    align-items: center;
+}
+.captcha-container a {
+    margin: 5px;
+}
+.captcha-container img {
+    height: 34px;
+}
+.captcha-container.input.ui input {
+    max-width: 150px;
+}
+.login-captcha-container {
+    width: 260px!important;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.login-captcha-container.input.ui input {
+    max-width: 150px;
+}
+.login-captcha-container a {
+    margin: 5px;
+    width: 150px;
+}
+.login-captcha-container img {
+    margin-left: 0;
+    height: 34px;
+}

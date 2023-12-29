@@ -1,0 +1,14 @@
+.ui.breadcrumb {
+    font-size: 0.875rem;
+    padding: 1.3125rem 0 0.875rem 0;
+}
+.ui.breadcrumb a {
+    color: #005cb9;
+}
+.ui.breadcrumb .divider {
+    color: #818fa6;
+}
+.ui.breadcrumb .active.section {
+    color: #7f8ea5;
+    font-weight: normal;
+}

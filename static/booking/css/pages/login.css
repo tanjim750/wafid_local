@@ -1,0 +1,334 @@
+html {
+    font-size: 16px;
+    overflow-x: hidden;
+    overflow-y: hidden;
+    background: #F8F8F8 !important;
+}
+
+body {
+    background: #F8F8F8 !important;
+}
+
+main.login {
+    /*background-image: url("../../img/login_bg.png");*/
+    background-size: cover;
+    background: #F8F8F8;
+}
+
+.ui.form .field > label {
+    height: 35px !important;
+}
+
+.login-captcha-container.input.ui input {
+    max-width: 75% !important;
+}
+
+.ui.input, .ui.form .fields .field .ui.input {
+    width: 100% !important;
+}
+
+.ui.card.login-card {
+    /*margin: 3.5rem auto 0 auto;*/
+    margin: 6.5rem 1rem 0.5rem 2rem;
+    width: 550px;
+    box-shadow: 0px 8px 28px -6px rgb(158 158 158 / 12%), 0px 18px 88px -4px rgb(158 158 158 / 14%) !important;
+    border-radius: 12px;
+    border: 0px solid #E1E1E1 !important;
+}
+
+.ui.form .fields > .field:first-child {
+    width: 395px;
+}
+
+@media only screen and (max-width: 800px) {
+    /* For mobile phones: */
+    .ui.card.login-card {
+        /*margin: 3.5rem auto 0 auto;*/
+        margin: 6.5rem 1rem 0.5rem 2rem !important;
+        width: 305px !important;
+        box-shadow: 0px 8px 28px -6px rgb(158 158 158 / 12%), 0px 18px 88px -4px rgb(158 158 158 / 14%) !important;
+        border-radius: 12px;
+        border: 0px solid #E1E1E1 !important;
+    }
+
+    .ui.card.login-card .content:nth-child(2) {
+        padding: 0rem 1rem 0.875rem 1rem !important;
+        border-top-color: white;
+    }
+
+    .ui.card.login-card .content:first-child {
+        background-color: #FFFFFF;
+        padding: 5rem 2rem 2rem 2.875rem !important;
+    }
+
+    .ui.card.login-card .card__footer .field ~ a {
+        font-size: 0.75rem;
+        color: #2661BA;
+        text-decoration-line: underline;
+        position: absolute;
+        right: 1rem !important;
+    }
+
+    .background-svg {
+        position: fixed !important;
+        left: 32.14% !important;
+        right: -9% !important;
+        top: 0% !important;
+        bottom: 1% !important;
+        margin: auto !important;
+        width: 60% !important;
+    }
+
+    .ui.input, .ui.form .fields .field .ui.input {
+        width: 74% !important;
+    }
+
+    .login-captcha-container.input.ui input {
+        max-width: 67% !important;
+    }
+}
+
+@media only screen and (max-width: 500px) {
+    /* For mobile phones: */
+    .ui.card.login-card {
+        /*margin: 3.5rem auto 0 auto;*/
+        margin: 6.5rem 1rem 0.5rem 2rem !important;
+        width: 305px !important;
+        box-shadow: 0px 8px 28px -6px rgb(158 158 158 / 12%), 0px 18px 88px -4px rgb(158 158 158 / 14%) !important;
+        border-radius: 12px;
+        border: 0px solid #E1E1E1 !important;
+    }
+
+    .ui.card.login-card .content:nth-child(2) {
+        padding: 0rem 1rem 0.875rem 1rem !important;
+        border-top-color: white;
+    }
+
+    .ui.card.login-card .content:first-child {
+        background-color: #FFFFFF;
+        padding: 5rem 2rem 2rem 2.875rem !important;
+    }
+
+    .ui.card.login-card .card__footer .field ~ a {
+        font-size: 0.75rem;
+        color: #2661BA;
+        text-decoration-line: underline;
+        position: absolute;
+        right: 1rem !important;
+    }
+
+    .background-svg {
+        position: fixed !important;
+        left: 32.14% !important;
+        right: -9% !important;
+        top: 0% !important;
+        bottom: 1% !important;
+        margin: auto !important;
+        width: 100% !important;
+    }
+
+    .ui.input, .ui.form .fields .field .ui.input {
+        width: 74% !important;
+    }
+
+    .login-captcha-container.input.ui input {
+        max-width: 67% !important;
+    }
+}
+
+.ui.card.login-card .content:first-child {
+    padding: 5.875rem;
+    /*background-color: #005cb9;*/
+    background-color: #FFFFFF;
+    padding-bottom: 10px;
+
+}
+
+.ui.card.login-card .content:first-child .header {
+    /*color: #373737;*/
+    font-size: 1.375rem;
+    line-height: 2rem;
+    letter-spacing: -0.1rem;
+    color: #373737;
+    margin-top: -2.21425em;
+}
+
+.ui.card.login-card .content:first-child .header2 {
+    color: #6F1D46;
+    font-size: 1.375rem;
+    /*line-height: 2rem;*/
+}
+
+.ui.card.login-card .content:first-child .header3 {
+    color: #7E7E7E;;
+    font-size: 1rem;
+    line-height: 2.375rem;
+}
+
+.ui.card.login-card .card__footer {
+    /*padding: 1rem 1.875rem;*/
+    display: flex;
+    /*justify-content: space-between;*/
+    /*font-size: 0.75rem;*/
+    /*line-height: 1.3125rem;*/
+    /*background-color: #f1f4f8;*/
+}
+
+.ui.card.login-card .card__footer .field {
+    margin: 0;
+}
+
+.ui.card.login-card .card__footer .field > label {
+    font-size: 0.75rem;
+    color: #333333;
+    display: contents;
+}
+
+.ui.card.login-card .card__footer .field ~ a {
+    font-size: 0.75rem;
+    color: #2661BA;;
+    text-decoration-line: underline;
+    position: absolute;
+    right: 5.9rem;
+}
+
+.ui.card.login-card .fields {
+    line-height: 8rem;
+    margin: 0 0 0;
+    /*width: 100%;*/
+    width: 374px !important;
+}
+
+.ui.card.login-card .content:nth-child(2) {
+    padding: 0rem 5.875rem 0.875rem 5.875rem;
+    border-top-color: white;
+}
+
+.ui.card.login-card .content:nth-child(2) .captcha-container {
+    flex-wrap: wrap;
+}
+
+.ui.card.login-card .content:nth-child(2) .captcha-container input {
+    max-width: 270px !important;
+}
+
+.ui.card .content img {
+    margin-left: -5px;
+}
+
+/*.ui.card.login-card .content:nth-child(2) > .field,*/
+/*.ui.card.login-card .content:nth-child(2) .inline.fields {*/
+/*    !*margin: 1.25rem 0 2.5rem 0;*!*/
+/*    !*margin: 1em -0.5em 1em;*!*/
+/*}*/
+
+.ui.card.login-card .content:nth-child(2) .field.captcha-container {
+    width: 100%;
+    padding-right: 0;
+}
+
+.ui.card.login-card .content:nth-child(2) .field input {
+    font-size: 0.875rem;
+    line-height: 1.3125rem;
+    border: 1px solid #B1B1B1;
+    border-radius: 12px;
+}
+
+.ui.card.login-card .content:nth-child(2) input[type="submit"] {
+    /*background: linear-gradient(to bottom, #005cb9 0%, #2da1f8 100%);*/
+    box-sizing: border-box;
+    background: #333333;
+    border: 1px solid #333333;
+    border-radius: 12px;
+    margin-bottom: 5%;
+}
+
+.background-svg {
+    position: fixed;
+    left: 60.14%;
+    right: -9%;
+    top: 14%;
+    bottom: 1%;
+    margin: auto;
+    width: 35%;
+}
+
+.content-container {
+    margin-top: 1% !important;
+    margin-bottom: 1% !important;
+}
+
+/* Create a custom checkbox */
+#id_remember_me {
+    height: 20px !important;
+    width: 20px !important;
+    background: #F8F8F8 !important;
+    border: 1px solid #333333 !important;
+    border-radius: 6px !important;
+}
+
+/* Create the checkmark/indicator (hidden when not checked) */
+#id_remember_me:after {
+    content: "" !important;
+    position: absolute !important;
+    display: none !important;
+}
+
+/* Show the checkmark when checked */
+.container input:checked ~ #id_remember_me:after {
+    display: block !important;
+}
+
+/* Style the checkmark/indicator */
+.container #id_remember_me:after {
+    left: 9px !important;
+    top: 5px !important;
+    width: 5px !important;
+    height: 10px !important;
+    border: solid black !important;
+    border-width: 0 3px 3px 0 !important;
+    -webkit-transform: rotate(45deg) !important;
+    -ms-transform: rotate(45deg) !important;
+    transform: rotate(45deg) !important;
+}
+
+.back {
+    text-decoration-line: underline;
+}
+
+.ui.segment.footer {
+    display: none !important;
+}
+
+.ui.menu.gcc-menu {
+    display: none !important;
+}
+
+.ui.grid {
+    display: none !important;
+}
+
+.login-captcha-container .ui .icon input {
+    width: 365px !important;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.login-captcha-container {
+    width: 350px !important;
+}
+
+.logo-svg {
+    display: none;
+    position: absolute;
+    width: 136px;
+    height: 68px;
+    left: 10%;
+    top: 5%;
+}
+
+.landing-page {
+    position: absolute;
+    left: 4%;
+    top: 105%;
+}

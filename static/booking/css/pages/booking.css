@@ -1,0 +1,111 @@
+
+/* Mobile */
+@media (min-width: 320px) and (max-width: 480px) {
+    .ui.form .field.accept-checkbox > label {
+        height: 65px;
+        max-height: 65px;
+    }
+
+    .ui.modal.gcc-modal > .header .header__logo {
+        width: 50%;
+    }
+
+    .ui.modal.gcc-modal .header .header__logo .image {
+        height: auto;
+    }
+
+    .ui.modal.gcc-modal > .header .header__text {
+        font-size: 1rem;
+    }
+
+    /* Hide scrollbar for Chrome, Safari and Opera */
+    .scroll-with-shadow .content::-webkit-scrollbar {
+          display: none;
+    }
+
+     .scroll-with-shadow .content {
+        -ms-overflow-style: none; /* IE, Edge */
+        scrollbar-width: none; /* Firefox */
+    }
+
+    .pager {
+         display: flex !important;
+         justify-content: center;
+         align-items: center;
+         margin-bottom: 15px;
+     }
+
+     .pager div.page-dot-item {
+         width: 8px;
+         height: 8px;
+         margin: 5px 5px;
+         vertical-align: middle;
+         position: relative;
+     }
+
+     .pager div.page-dot {
+         width: 5px;
+         height: 5px;
+         background-color: #c5d0de;
+         border-radius: 5px;
+         position: absolute;
+         top: 25%;
+         left: 25%;
+     }
+
+    .pager div.page-dot.active {
+        width: 8px;
+        height: 8px;
+        background-color: #2ea2f8;
+        border-radius: 8px;
+        position: absolute;
+         top: 0;
+         left: 0;
+     }
+
+    .booking-form .ui.grid .wide.column {
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+    }
+
+    .ui.form .form-buttons-container {
+        padding: 1.2em 0 1.2em 0;
+        height: 10em;
+    }
+
+    .ui.modal.gcc-modal > .header {
+        display: block;
+    }
+}
+
+/* Mobile Landscape */
+@media only screen
+  and (min-device-width: 320px)
+  and (max-device-width: 568px)
+  and (orientation: landscape), only screen
+  and (min-device-width: 375px)
+  and (max-device-width: 667px)
+  and (orientation: landscape), only screen
+  and (min-device-width: 414px)
+  and (max-device-width: 736px)
+  and (orientation: landscape), only screen
+  and (min-device-width: 375px)
+  and (max-device-width: 812px)
+  and (orientation: landscape) {
+    .ui.modal.gcc-modal > .header {
+        display: block;
+    }
+}
+
+@media only screen
+  and (min-device-width: 320px)
+  and (max-device-width: 740px)
+  and (orientation: landscape), only screen
+  and (min-device-width: 600px)
+  and (max-device-width: 603px)
+  and (orientation: portrait) {
+    .field .preview-image-widget-wrapper .ui.dropdown {
+        margin: 0 auto;
+        width: 50%;
+    }
+}

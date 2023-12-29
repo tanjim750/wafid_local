@@ -1,0 +1,305 @@
+.ui.form {}
+.ui.form .form-fields-container {
+       padding: 1.875rem;
+}
+
+.ui.form .field {
+    margin: 0.9375rem 0;
+}
+.ui.form .field.reverse {
+    display: flex;
+    align-items: center;
+    flex-direction: row-reverse;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+}
+.ui.form .field.reverse input {
+    margin: 0 .85714286em 0 0;
+}
+.ui.form .field.reverse .field-error-message {
+    width: 100%;
+}
+
+.form-group {
+    display: flex;
+    padding: 1.875rem;
+}
+.form-group form:first-of-type {
+    width: 66%;
+}
+.form-group form:last-of-type {
+    width: 33%;
+}
+
+.fields-divider {
+    border-top: 1px dashed #dfe3e9;
+}
+
+.form-buttons-container {
+    padding: 1.875rem;
+    height: auto;
+}
+
+.form-navigation-container {
+    border-top: 1px solid rgba(34,36,38,.15);
+    padding-top: 0.9rem;
+    margin: 0 1.875rem 0 1.875rem;
+    height: 3.875rem;
+}
+
+.ui.form .form-buttons-container.spaced .button, .ui.form .form-buttons-container.spaced a {
+    margin-left: 30px;
+}
+
+.ui.form .header {
+    margin-top: 0;
+}
+.ui.form .header .icon {
+    font-size: 0.8em;
+    background-color: #CDDEF1;
+    color: #005cb9;
+    border-radius: 50%;
+    width: 2rem;
+    height: 2rem;
+}
+.ui.form  .ui.section.divider {
+    border-top: 2px dashed rgba(34,36,38,.15);
+}
+
+.ui.form .field > label {
+    font-size: 0.875rem;
+    line-height: 1.3125rem;
+    font-weight: bold;
+    color: #7E7E7E;
+    height: 40px;
+    max-height: 40px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+}
+.ui.form input[type="text"], .ui.form input[type="email"], .ui.form input[type="number"], .ui.form input[type="url"],
+.ui.form input[type="time"],
+.ui.form select {
+    border: 1px solid #dfe3e9;
+    padding: 0.5rem;  /* 8px 21px */
+    min-height: 37px;
+    
+}
+.ui.form input[type="radio"] + label:hover {
+    cursor: pointer;
+}
+
+.field .select2-container--default .select2-selection--single {
+    border: 1px solid #dfe3e9;
+    height: 32px;
+    border-radius: 12px
+}
+
+/* increase left padding */
+.ui[class*="left icon"].input>input {
+    padding-left: 3.5em!important;
+}
+.ui.form input, optgroup, select, textarea, .dropdown {
+    font-size: 0.9rem;
+}
+
+.ui.form .form-divider {
+    margin-top: 3rem;
+    margin-bottom: 2rem;
+}
+
+.field-error-message {
+    font-size: 0.78em;
+    margin-right: 0;
+    margin-top: 5px;
+    color: #EB363D;
+}
+.field-error-message .icon {
+    font-size: 1.07rem;
+}
+.field-info-message {
+    font-size: 0.78em;
+    margin-right: 0;
+    margin-top: 5px;
+    color: #2ea2f8;
+}
+.field-info-message .icon {
+    font-size: 1.07rem;
+}
+.text-info-field {
+    font-weight: bold;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 2;
+    letter-spacing: normal;
+    color: #c5d0de;
+}
+
+.ui.form .field.inline ul {
+    list-style: none;
+    padding-left: 0;
+    flex-wrap: wrap;
+}
+.ui.form .field.inline ul li {
+    display: inline-block;
+}
+.ui.form .field.inline ul li:not(:last-of-type),
+.ui.form .field.inline-force ul li {
+    margin-right: 1.5rem;
+}
+.ui.form .field.inline >label {
+    font-size: 0.875rem;
+    line-height: 1.3125rem;
+    font-weight: bold;
+    color: #7f8fa4;
+}
+.ui.form .field.inline ul li input {
+    font-size: 0.875rem;
+    margin-top: 0.15rem;
+}
+
+.ui.form .field.error input:not([type]),
+.ui.form .field.error input[type=date],
+.ui.form .field.error input[type=datetime-local],
+.ui.form .field.error input[type=email],
+.ui.form .field.error input[type=file],
+.ui.form .field.error input[type=number],
+.ui.form .field.error input[type=password],
+.ui.form .field.error input[type=search],
+.ui.form .field.error input[type=tel],
+.ui.form .field.error input[type=text],
+.ui.form .field.error input[type=time],
+.ui.form .field.error input[type=url],
+.ui.form .field.error select,
+.ui.form .field.error textarea,
+.ui.form .fields.error .field input:not([type]),
+.ui.form .fields.error .field input[type=date],
+.ui.form .fields.error .field input[type=datetime-local],
+.ui.form .fields.error .field input[type=email],
+.ui.form .fields.error .field input[type=file],
+.ui.form .fields.error .field input[type=number],
+.ui.form .fields.error .field input[type=password],
+.ui.form .fields.error .field input[type=search],
+.ui.form .fields.error .field input[type=tel],
+.ui.form .fields.error .field input[type=text],
+.ui.form .fields.error .field input[type=time],
+.ui.form .fields.error .field input[type=url],
+.ui.form .fields.error .field select,
+.ui.form .fields.error .field textarea  {
+    background: #ffffff;
+    border-color: #EB363D;
+    color: rgba(0,0,0,.87);
+}
+.ui.form .field.error label {
+    color: #7f8fa4;
+}
+
+.grey-caption {
+    font-size: 0.875rem;
+    color: #7f8fa4;
+}
+
+.ui.form .field.file-field {
+    margin-top: 25px;
+}
+.ui.form .field.file-field label {
+    padding-top: 8px;
+    height: 37px;
+}
+.ui.form .field.file-field .button {
+    height: 37px;
+    font-size: 0.875rem
+}
+
+.ui.form .disabled.field, .ui.form .disabled.fields .field, .ui.form .field :disabled {
+    opacity: 1;
+}
+
+.ui.form .disabled.field input, .ui.form .disabled.fields .field input, .ui.form .field :disabled input,
+    .ui.form .disabled.field textarea, .ui.form .disabled.fields .field textarea, .ui.form .field :disabled textarea,
+    .ui.form .disabled.field select, .ui.form .disabled.fields .field select, .ui.form .field :disabled select{
+    opacity: 1;
+    background-color: #F1F4F8;
+}
+
+.ui.form .field.disabled>label, .ui.form .fields.disabled>label {
+    opacity: 1;
+}
+.ui.toggle.checkbox input:checked~.box, .ui.toggle.checkbox input:checked~label {
+    color: #7f8fa4 !important;
+}
+
+.booking-appointment-form .field {
+    padding-bottom: .1rem;
+    position: relative;
+}
+
+.ui.form .field .medkit {
+    padding-top: 1rem;
+    color: #7f8fa4;
+}
+.ui.form .field .medkit + span {
+    color: #7f8fa4;
+}
+.disappearable-field{
+    min-height: 37px;
+}
+.small-top-margin-field{
+    margin-top: 5px !important;
+}
+
+.ui.form input[type="time"] {
+    height: 37px;
+}
+
+.custom-field ul li{
+    display: block;
+}
+
+.custom-field ul {
+    padding-left: 15px;
+}
+
+.ui.form .custom-field.field {
+    display: flex;
+    flex-direction: column;
+}
+
+.ui.form .custom-field.field > ul {
+    margin: 0;
+    padding: 0;
+}
+.captcha1{
+    margin: 44px 0 0 10px;
+}
+.generate1{
+    margin: -60px 100px 100px 0px!important;
+    
+}
+.button1{
+    background: #333333 !important;
+    width: 196px !important;
+    text-align: center !important;
+    color: #F8F8F8 !important;
+    font-family: 'Frutiger LT' !important;
+    font-style: normal !important;
+    font-weight: 400 !important;
+    font-size: 16px !important;
+    line-height: 22px !important;
+
+}
+.gcc1{
+    padding: 40px 0px 0px 100px;
+}
+select{
+    color: rgba(0,0,0,.87) !important;
+}
+
+
+.ui.fluid.dropdown {
+    background: #FFFFFF !important;
+    border: 1px solid #E1E1E1 !important;
+    border-radius: 12px !important;
+}

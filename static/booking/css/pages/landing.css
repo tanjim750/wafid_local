@@ -1,0 +1,158 @@
+
+@import url('https://fonts.cdnfonts.com/css/frutiger-lt-pro');
+
+body{
+    background: #373737 !important;
+    display: block ;
+    min-height: 100%;
+
+    font-family: 'Lato', 'Helvetica Neue', Arial, Helvetica, sans-serif !important;
+    font-style: normal;
+}
+
+main{
+    background-color: transparent;
+    border: 0;
+}
+
+.gcc-menu{
+    background-color:#373737 !important;
+    border-bottom: 1px solid rgb(146, 146, 146) !important;
+    padding-bottom: 20px;
+}
+.gcc-submenu-wrapper{
+    background-color:#373737 !important;
+}
+.gcc-submenu-continer{
+    background-color:#373737 !important;
+}
+.gcc-submenu-continer a{
+    color: #fff !important;
+}
+.ui.menu .item{
+    color: white !important;
+
+}
+
+#gcc-header-login-botton{
+    border: 1px solid #fff !important;
+}
+#menubutton{
+    background-color:#373737 !important;
+    color: #fff;
+}
+
+
+/* .gcc-mnue{
+    background-color:#373737 !important;
+    padding:1% 0 1% 0 !important;
+    border-bottom: 1px solid #515151 !important;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+} */
+
+.mune-moblie-view{
+    width:clamp(20rem, 90vw, 144rem) !important; padding: 0 0 0 10px
+}
+.gcc-continer{
+    width:clamp(20rem, 78vw, 124rem) !important;
+    height: 83.5% !important;
+    height: auto !important;
+}
+
+
+
+
+.gcc-bg-hart-img{
+    width:clamp(20rem, 52vw, 56rem);
+    height:clamp(20rem, 45vw, 47rem);
+    z-index: -1;
+    position: absolute;
+    right:10px;
+}
+
+@media all and (min-width: 100px) and (max-width: 1000px) {
+    .gcc-bg-hart-img{
+        top:clamp(17rem, 45vw, 47rem);
+    }
+    .gcc-card-header{
+        font-size: 1.414286em !important;
+    }
+}
+
+
+.w-txt {
+    font-weight: 400;
+    font-size: 59px;
+    line-height: 60px;
+    letter-spacing: -2.2px;
+    color: #fdfdfd !important;
+}
+.w-txt2 {
+    letter-spacing:0.6px;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 23px;
+    letter-spacing: 0.3px;
+    color: #acacac;
+}
+.w-txt3{
+    font-style: normal !important;
+    font-weight: 800;
+    font-size: 25px;
+    line-height: 32px;
+    letter-spacing: 1.2px;
+    color: #fffefe;
+}
+
+
+/* .welcome-card-margin {
+    margin-top: 50px !important;
+    margin-bottom: 50px !important;
+} */
+
+.gcc-card{
+    width:clamp(24rem, 38vw, 61rem) !important;
+    height:clamp(25rem, 25vw, 56rem) !important;
+    margin-bottom: 2vh;
+}
+
+.container-landing{
+    margin-bottom: 10% !important;
+    margin-top:60px !important;
+}
+
+.c-text{
+    line-height: 1.7rem;
+    min-height: 6.1em;
+    letter-spacing: 0.05em;
+    justify-content: center; align-items: center; width: 100%; margin-bottom: 10px;
+}
+
+.buttons-handling{
+    justify-content: center;
+     align-items: center;
+     width: 100%;
+     margin-bottom: 10px;
+}
+
+.c-buttons{
+    display: flex;
+     justify-content: center;
+     align-items: center;
+     flex-wrap: wrap;
+     flex-direction: row;
+}
+.landing-footer{
+    margin-top: 60px;
+}
+@media all and (min-height: 1200px) and (max-height: 2441px) {
+    .landing-footer{
+        margin-top: 24% !important;
+    }
+}
+
+.text-transform-none {
+    text-transform: none !important;
+}

@@ -1,0 +1,81 @@
+.ui.menu.gcc-menu {
+    margin: 1.125rem 0;
+    border: none;
+    box-shadow: none;
+    border-radius: 0;
+}
+.ui.gcc-menu a.item:hover {
+    color: #000;
+    background-color: initial;
+}
+.ui.gcc-menu .item {
+    font-size: 0.875rem;  /* 14px */
+    padding-top: 0;
+    padding-bottom: 0;
+}
+.ui.gcc-menu .item__icon {
+    line-height: 2.285rem;
+    margin-right: 0.5rem;
+}
+.ui.gcc-menu .item__icon img {
+    display: block;
+}
+.ui.gcc-menu .item__text {
+    font-weight: bold;
+    margin-left: 0.5rem;
+    line-height: 2.285rem;
+}
+.ui.gcc-menu .brand {
+    height: 2.5rem;
+    width: auto;
+}
+.ui.gcc-menu .brand .image {
+    width: 136px !important;
+    height: 68px !important;
+}
+.ui.menu.gcc-submenu {
+    justify-content: center;
+    margin-top: 0;
+    margin-bottom: 0;
+    border: 0;
+    border-radius: 0;
+}
+@media only screen and (max-width: 990px) {
+    .ui.menu.gcc-submenu {
+        margin-top: 56px !important;
+    }
+}
+.ui.menu.gcc-submenu .item {
+    font-size: 0.875rem;
+}
+.ui.menu.gcc-submenu .active-item.item {
+    background-color: initial;
+    border-bottom: 2px solid #6F1D46;
+}
+
+/* disables the active `border-bottom` for active dropdown in the menu */
+.ui.menu.gcc-submenu .ui.dropdown.active,
+.ui.menu.gcc-submenu .ui.dropdown .menu>.active.item {
+    font-weight: 100!important;
+}
+
+.ui.menu.gcc-submenu .ui.dropdown.active-item {
+     padding-top: 0px;
+ }
+
+.ui .dropdown a.title {
+    color: black;
+    font-weight: bold;
+}
+
+.ui.menu:not(.secondary):not(.text):not(.tabular):not(.borderless)>.container>.item:not(.right):not(.borderless):first-child {
+    border-left: none !important;
+}
+
+.ui.menu {
+    -webkit-box-shadow: none;
+}
+
+.menu {
+    -webkit-box-shadow: none;
+}

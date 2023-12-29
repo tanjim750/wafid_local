@@ -1,0 +1,38 @@
+.ui.modal .description .table tr:first-of-type td {
+    padding-top: 1rem;
+}
+.ui.modal .table.mc-table tr:first-of-type td.field_value {
+    color: #333f52;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+.ui.modal .table.mc-table tr td.field_value {
+    color: #7f8fa4;
+}
+.ui.modal .table.mc-table tr.barcode td {
+    padding: 1.3rem 0;
+    border-top: 1px solid #dfe3e9;
+    border-bottom: 1px solid #dfe3e9;
+}
+.ui.modal .table.mc-table tr.slip-dates td {
+    padding-top: 1.875rem;
+    padding-bottom: 0;
+}
+.ui.modal .table.mc-table tr.slip-dates td.field_name {
+    color: #7f8fa4;
+}
+.ui.modal .table.mc-table tr.slip-dates td.field_value {
+    color: #333f52;
+    font-weight: 700;
+}
+.ui.modal .table.mc-table tr.slip-dates td.slip-dates__valid_till {
+    color: #2ea2f8;
+}
+.ui.modal .table.mc-table i {
+    color: #ccc;
+}
+
+.ui.modal .table.mc-table tr.working-hours td {
+    padding-top: 1.5rem;
+    border-top: 1px solid #dfe3e9;
+}

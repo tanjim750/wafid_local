@@ -1,0 +1,28 @@
+/* Carousel styles override */
+.glide__arrow {
+    font-size: 2rem;
+    padding: 0;
+    background-color: #fff;
+}
+
+
+.glide__bullet {
+    background-color: #b4b5b6;
+}
+.glide__bullet--active {
+    background-color: #333e52;
+}
+
+
+.glide__slide {
+  line-height: 100px;
+  margin: 0;
+  text-align: center;
+}
+
+#flag-card {
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
