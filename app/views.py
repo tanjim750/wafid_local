@@ -787,7 +787,7 @@ class PayNow(View):
                 thread = threading.Thread(target=self.pay_instance.pay_now, args=(link,))
                 threads.append(thread)
                 thread.start()
-                time.sleep(5)
+                time.sleep(1)
             
             for th in threads:
                 th.join()
@@ -931,7 +931,8 @@ class PayBooking():
                 "status": 500,
                 "payment_status": "No tab found that asosiated with the url or no card added"
             }
-        # driver.quit() # Close the browser
+        driver.quit() # Close the browser
+        PayBooking.all_tabs.pop(url)
         #driver.close() # close the current tab
 
         self.change_payment_status(url, context)
