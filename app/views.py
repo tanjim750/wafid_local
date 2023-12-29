@@ -7,14 +7,17 @@ from django.contrib.auth.decorators import login_required
 from django.utils import timezone
 from .models import *
 
-import requests,re
+import requests,re,os
 from datetime import timedelta,datetime
 import threading
 import time
+from bs4 import BeautifulSoup
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import Select
+from selenium.webdriver.firefox.firefox_binary import FirefoxBinary
+from selenium.webdriver.chrome.service import Service
 from anticaptchaofficial.recaptchav3proxyless import *
 
 class LoginView(View):
@@ -442,8 +445,9 @@ class MakeBooking(View):
             self.obj = obj.first()
         else:
             self.obj = DefaultBookinInfo.objects.create()
+        
+        self.driver = webdriver.Edge()
 
-        self.driver = webdriver.Chrome()
         self.url = "https://wafid.com/book-appointment/"
         self.default_value()
 
@@ -520,7 +524,7 @@ class MakeBooking(View):
         return True
     def set_cookie(self):
         cookies_json = [
-            {
+           {
                 "domain": ".wafid.com",
                 "name": "_gid",
                 "path": "/",
@@ -613,15 +617,16 @@ class MakeBooking(View):
         return d
     
     def book_now(self):
-        self.driver.get(self.url)
+        self.driver.get("https://wafid.com/")
         self.set_cookie()
+        self.driver.get(self.url)
         page_source = self.driver.page_source
-
+        
         # Define a regular expression pattern for UUIDs
-        uuid_pattern = re.compile(r'data-widget-uuid="([^"]+)"')
+        #uuid_pattern = re.compile(r'data-widget-uuid="([^"]+)"')
 
         # Find all matches in the page source
-        uuid = uuid_pattern.findall(page_source)[0]
+        #uuid = uuid_pattern.findall(page_source)[0]
         
         self.driver.find_element(By.NAME, "country").send_keys(self.country)
         time.sleep(0.5)
@@ -675,7 +680,7 @@ class MakeBooking(View):
         return_url = self.driver.current_url
         count = 1
         while (return_url == self.url and count < 3):
-            self.solve_captcha(uuid)
+            #self.solve_captcha(uuid)
             checkbox = self.driver.find_element(By.CSS_SELECTOR, "input[id=id_confirm]")
             # Find the parent div of the checkbox
             parent_div = checkbox.find_element(By.XPATH, "./..")
@@ -737,7 +742,10 @@ class AddToTab(View):
             wafid_link = WafidLink.objects.filter(sno__in = list(range(start, end+1)))
             for obj in wafid_link:
                 link = obj.link
-                self.pay_instance.add_to_tab(link,webdriver.Edge())
+                
+                driver = webdriver.Edge()
+
+                self.pay_instance.add_to_tab(link,driver)
                 self.context["links"].append(
                     {
                         "sno":obj.sno,
@@ -862,7 +870,7 @@ class PayBooking():
 
             # Check the return URL after opening the payment URL
             current_url = self.driver.current_url
-
+            
             if current_url == url:
 
                 # Find and fill out the card holder name, card number, CVV, expiry year, and expiry month
