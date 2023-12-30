@@ -4,3 +4,4 @@ Django==5.0
 h11==0.14.0
 requests==2.31.0
 selenium==4.16.0
+psycopg2

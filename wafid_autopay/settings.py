@@ -74,13 +74,23 @@ WSGI_APPLICATION = 'wafid_autopay.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
-}
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
 
+DATABASES = {
+   'default': {
+       'ENGINE': 'django.db.backends.postgresql',
+       'NAME': 'df7sqc3c5ti5dp',
+       'USER': 'vshkvlpyscgntc',
+       'PASSWORD': '8ae0f600dc0c0e406c8254e73c64c1c7f618ae8f25a32a1eb196951b252ce61c',
+       'HOST': 'ec2-3-217-146-37.compute-1.amazonaws.com',
+       'PORT': '5432',
+   }
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators

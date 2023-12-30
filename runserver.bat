@@ -18,6 +18,7 @@ pip install Django==5.0
 pip install h11==0.14.0
 pip install requests==2.31.0
 pip install selenium==4.16.0
+pip install psycopg2
 
 rem Open the default browser to the Django development server address
 start "" http://127.0.0.1:8000/
