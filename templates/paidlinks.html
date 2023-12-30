@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+<title>Home</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link rel="icon" type="image/png" href="{% static 'home/images/icons/favicon.ico' %}" />
+
+<link rel="stylesheet" type="text/css" href="{% static 'home/vendor/bootstrap/css/bootstrap.min.css' %}">
+
+<link rel="stylesheet" type="text/css" href="{% static 'home/fonts/font-awesome-4.7.0/css/font-awesome.min.css' %}">
+
+<link rel="stylesheet" type="text/css" href="{% static 'home/vendor/animate/animate.css' %}">
+
+<link rel="stylesheet" type="text/css" href="{% static 'home/vendor/select2/select2.min.css' %}">
+
+<link rel="stylesheet" type="text/css" href="{% static 'home/vendor/perfect-scrollbar/perfect-scrollbar.css' %}">
+
+<link rel="stylesheet" type="text/css" href="{% static 'home/css/util.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'home/css/main.css' %}">
+
+<meta name="robots" content="noindex, follow">
+</head>
+<body>
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+	<div class="container-fluid">
+		<a class="navbar-brand" href="/">Nur Travel</a>
+		<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+		<span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="collapse navbar-collapse justify-content-center" id="navbarNav">
+		<ul class="navbar-nav ">
+			<li class="nav-item">
+			<a class="nav-link" aria-current="page" href="/">Home</a>
+			</li>
+			<li class="nav-item">
+			<a class="nav-link" href="">Paid Links</a>
+			</li>
+			<li class="nav-item">
+			<a class="nav-link" href="{% url 'booking' %}">Booking</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" href="{% url 'booking_links' %}">Booking Links</a>
+			</li>
+			{% if request.user.is_superuser %}
+				<li class="nav-item">
+					<a class="nav-link" aria-current="page" href="{% url 'admin:index' %}">Admin Dashboard</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" aria-current="page" href="{% url 'admin:index' %}app/cardinfo/add/">Add Card</a>
+				</li>
+			{% endif %}
+			<li class="nav-item">
+                <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+            </li>
+		</ul>
+		</div>
+	</div>
+</nav>
+
+<div class="limiter">
+<div class="container-table100">
+<div class="wrap-table100">
+<div class="table100 ver1 m-b-110">
+<div class="table100-head">
+<table>
+<thead>
+<tr class="row100 head">
+<th class="cell100 column1">Link</th>
+<th class="cell100 column2">Name</th>
+<th class="cell100 column3">Comment</th>
+<th class="cell100 column4">Status</th>
+<th class="cell100 column5"></th>
+<th class="cell100 column6">#Sno</th>
+</tr>
+</thead>
+</table>
+</div>
+<div class="table100-body js-pscroll">
+<table>
+<tbody id="link-datas">
+{% for Link in links %}
+	<tr class="row100 body">
+		<td class="cell100 column1" >{{Link.link}}</td>
+		<td class="cell100 column2" contenteditable="true" onblur="updateLink(this)">{{Link.name}}</td>
+		<td class="cell100 column3" contenteditable="true" onblur="updateLink(this)">{{Link.comment}}</td>
+		<td class="cell100 column4" id="status-{{Link.sno}}">{{Link.status}}</td>
+		<td class="cell100 column5">
+			<img src="{% static 'home/images/remove.png' %}" alt="remove" title="Remove the link" style="height: 30px; width: 30px;" onclick="removeLink(this)">
+		</td>
+		<td class="cell100 column6">{{Link.sno}}</td>
+		<td></td>
+	</tr>
+{% endfor %}
+</tbody>
+</table>
+</div>
+</div>
+
+</div>
+</div>
+</div>
+
+<script src="{% static 'home/vendor/jquery/jquery-3.2.1.min.js' %}"></script>
+
+<script src="{% static 'home/vendor/bootstrap/js/popper.js' %}"></script>
+<script src="{% static 'home/vendor/bootstrap/js/bootstrap.min.js' %}"></script>
+
+<script src="{% static 'home/vendor/select2/select2.min.js' %}"></script>
+
+<script src="{% static 'home/vendor/perfect-scrollbar/perfect-scrollbar.min.js' %}"></script>
+<script>
+		$('.js-pscroll').each(function(){
+			var ps = new PerfectScrollbar(this);
+
+			$(window).on('resize', function(){
+				ps.update();
+			})
+		});
+
+	</script>
+<script>
+    function updateLink(event){
+		const url = "{% url 'update_link' %}"
+		let row = event.parentNode;
+		
+		let link = row.querySelector('td.column1');
+		let name = row.querySelector('td.column2');
+		let comment = row.querySelector('td.column3');
+		let status = row.querySelector('td.column4');
+		let sno = row.querySelector('td.column6');
+
+		let form = document.querySelector('#add_link_form');
+		let csrf_token = document.querySelector('input[name=csrfmiddlewaretoken]');
+		form.innerHTML = "";
+		form.innerHTML += '<input type="hidden" name="csrfmiddlewaretoken" value="'+csrf_token.value+'">';
+		form.innerHTML += '<input type="text" name="link" value="' +link.textContent+'">';
+		form.innerHTML += '<input type="text" name="name" value="' +name.textContent+'">';
+		form.innerHTML += '<input type="text" name="comment" value="' +comment.textContent+'">';
+		form.innerHTML += '<input type="text" name="sno" value="' +sno.textContent+'">';
+
+		let formData = new FormData(form);
+
+		fetch(url, {
+			method: 'POST',
+			body: formData
+		})
+		.then(response => response.json())
+		.then(data => {
+			if(data.status==200) {
+				link.textContent = data.links.link;
+				name.textContent = data.links.name;
+				comment.textContent = data.links.comment;
+				status.textContent = data.links.status;
+				sno.textContent = data.links.sno;
+
+			}else{
+				alert(data.error);
+			}
+		})
+		.catch(error => {
+			alert(data.error);
+		});
+	}
+
+	function removeLink(event){
+		url = "{% url 'remove_link' %}";
+
+		let row = event.parentNode.parentNode;
+		let sno = row.querySelector('td.column6').textContent;
+		
+		$.getJSON(url+"?sno="+sno)
+			.done(function(data){
+				if(data.status == 200){
+					row.remove();
+
+					var tableRows = document.querySelectorAll('tbody#link-datas tr');
+					for(row_ of tableRows){
+						row_index = row_.rowIndex;
+						if(row_index != 0){
+							var row_sno = row_.querySelector('td.column6');
+							row_sno.textContent = row_index;
+						}
+					}
+				}else{
+					alert(data.error);
+				}
+			})
+			.fail(function(jqXHR, textStatus, errorThrown){
+				console.log(errorThrown);
+			});
+	}
+</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-23581568-13"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-23581568-13');
+</script>
+
+<script src="{% static 'home/js/main.js' %}"></script>
+<script defer src="https://static.cloudflareinsights.com/beacon.min.js/v84a3a4012de94ce1a686ba8c167c359c1696973893317" integrity="sha512-euoFGowhlaLqXsPWQ48qSkBSCFs3DPRyiwVu3FjR96cMPx+Fr+gpWRhIafcHwqwCqWS42RZhIudOvEI+Ckf6MA==" data-cf-beacon='{"rayId":"83779cb70b24ba4a","b":1,"version":"2023.10.0","token":"cd0b4b3a733644fc843ef0b185f98241"}' crossorigin="anonymous"></script>
+</body>
+</html>

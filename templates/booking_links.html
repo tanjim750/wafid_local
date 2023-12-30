@@ -35,7 +35,7 @@
 			<a class="nav-link" aria-current="page" href="/">Home</a>
 			</li>
 			<li class="nav-item">
-			<a class="nav-link" href="">Paid Links</a>
+                <a class="nav-link" href="{% url 'paid_links' %}">Paid Links</a>
 			</li>
 			<li class="nav-item">
 			<a class="nav-link" href="{% url 'booking' %}">Booking</a>
@@ -99,6 +99,7 @@
                 Book
             </button>
 		</td>
+        <td></td>
 	</tr>
 {% endfor %}
 </tbody>

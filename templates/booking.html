@@ -9,6 +9,37 @@
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 
 <meta name="robots" content="noindex, follow">
+<style>
+    .popup {
+        position: fixed;
+        z-index: 1;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        background-color: rgba(0, 0, 0, 0.4);
+        display: none;
+    }
+    .popup-content {
+        background-color: white;
+        margin: 10% auto;
+        padding: 20px;
+        border: 1px solid #888888;
+        width: 30%;
+        font-weight: bolder;
+    }
+    .popup-content button {
+        display: block;
+        margin: 0 auto;
+    }
+    .show {
+        display: block;
+    }
+    h1 {
+        color: green;
+    }
+</style>
 </head>
 <body>
 <div class="container">
@@ -44,7 +75,17 @@
             </div>
         </div>
     </nav>
-
+    <div id="myPopup" class="popup" {% if status %} style="display: block;" {% endif %}>
+        <div class="popup-content">
+            <h1 style="{% if status == 200 %} color:green; {% else %}color:red;{% endif %}">
+                  {{ text}}
+              </h1>
+            
+            <button onclick="document.querySelector('div.popup').style.display = 'none'">
+                  Close
+              </button>
+        </div>
+    </div>
     <form method="post" id="booking_form"> {% csrf_token %}
         <div class="row mt-5">
             <div class="col-md-4 mb-3">
@@ -110,6 +151,13 @@
             <div class="col-md-4 mb-3">
                 <label for="exampleFormControlInput1" class="form-label">Medical Name</label>
               <input type="text" name="medical" class="form-control" placeholder="Medical Name" required>
+            </div>
+            <div class="col-md-4 mb-3">
+                <label for="exampleFormControlInput1" class="form-label">Select Browser</label>
+                <select name="browser" id="" class="form-control">
+                    <option value="edge" selected>Edge Browse</option>
+                    <option value="firefox">Firefox Browse</option>
+                </select>
             </div>
         </div>
 

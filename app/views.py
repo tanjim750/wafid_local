@@ -72,6 +72,19 @@ class HomeView(View):
         else:
             return redirect("login")
 
+class PaidLinksView(View):
+    def __init__(self):
+        self.links = WafidLink.objects.filter(is_paid=True).order_by("sno")
+
+    def get(self,request):
+        if request.user.is_authenticated:
+            context = {
+                "links":self.links
+            }
+            return render(request,"paidlinks.html",context)
+        else:
+            return redirect("login")
+
 class AddLink(View):
     def post(self, request):
         if not request.user.is_authenticated:
@@ -235,6 +248,7 @@ class BookingView(View):
         passport_expiry = request.POST.get("passport_expiry",None)
         agent = request.POST.get("agent",None)
         medical = request.POST.get("medical",None)
+        browser = request.POST.get("browser",None)
 
         booking = Booking.objects.filter(passport = passport_num)
         if booking.exists():
@@ -249,15 +263,16 @@ class BookingView(View):
             if difference < timedelta(hours=1.01):
                 context = {
                     "status":400,
-                    "error":f"Already booking completed. Try again after {str(timedelta(hours=1)-difference)[:7]} hours"
+                    "text":f"Already booking completed. Try again after {str(timedelta(hours=1)-difference)[:7]} hours"
                 }
-                return JsonResponse(context)
+                return render(request,'booking.html',context)
 
-        make_booking = MakeBooking()
+        make_booking = MakeBooking(browser)
         # make_booking.login_google()
         make_booking.get_values(request.user,fname,lname,dob,gender,marital_status,passport_num,passport_issue_date,passport_expiry,agent,medical)
         response = make_booking.book_now()
-        return JsonResponse(response)
+        context = response
+        return render(request,'booking.html',context)
 
 
 class BookingLinkView(View):
@@ -364,7 +379,7 @@ class BookingLinkView(View):
             return JsonResponse(context)
         
         else:
-            booking = Booking.objects.all().order_by("passport")
+            booking = Booking.objects.all().order_by("-date")
             context = {
                 "bookings": booking
             }
@@ -439,14 +454,16 @@ class BookAgainView(View):
 
             
 class MakeBooking(View):
-    def __init__(self):
+    def __init__(self,browser):
         obj = DefaultBookinInfo.objects.filter(id=1)
         if obj.exists():
             self.obj = obj.first()
         else:
             self.obj = DefaultBookinInfo.objects.create()
-        
-        self.driver = webdriver.Edge()
+        if browser == "firefox":
+            self.driver = webdriver.Firefox()
+        else:
+            self.driver = webdriver.Edge()
 
         self.url = "https://wafid.com/book-appointment/"
         self.default_value()
@@ -614,19 +631,19 @@ class MakeBooking(View):
         d["medical_name"] = booking.medical_name
         d["date"] = str(booking.date)[:-9]
         d["username"] = booking.user.username
+        d["text"] = "Booking Successful!!!"
         return d
     
     def book_now(self):
-        self.driver.get("https://wafid.com/")
-        self.set_cookie()
         self.driver.get(self.url)
+        self.set_cookie()
         page_source = self.driver.page_source
         
         # Define a regular expression pattern for UUIDs
-        #uuid_pattern = re.compile(r'data-widget-uuid="([^"]+)"')
+        uuid_pattern = re.compile(r'data-widget-uuid="([^"]+)"')
 
         # Find all matches in the page source
-        #uuid = uuid_pattern.findall(page_source)[0]
+        uuid = uuid_pattern.findall(page_source)[0]
         
         self.driver.find_element(By.NAME, "country").send_keys(self.country)
         time.sleep(0.5)
@@ -680,7 +697,7 @@ class MakeBooking(View):
         return_url = self.driver.current_url
         count = 1
         while (return_url == self.url and count < 3):
-            #self.solve_captcha(uuid)
+            self.solve_captcha(uuid)
             checkbox = self.driver.find_element(By.CSS_SELECTOR, "input[id=id_confirm]")
             # Find the parent div of the checkbox
             parent_div = checkbox.find_element(By.XPATH, "./..")
@@ -698,15 +715,16 @@ class MakeBooking(View):
             booking = self.add_to_db(return_url)
             context = {
                 "status": 200,
-                "booking": booking
             }
+            context.update(booking)
         else:
             context = {
                 "status": 400,
-                "return_url": return_url
+                "text": "Booking failed"
             }
         self.driver.quit()
         return context
+
 
 class AddToTab(View):
     def __init__(self):

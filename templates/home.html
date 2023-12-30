@@ -36,7 +36,7 @@
 			<a class="nav-link" aria-current="page" href="/">Home</a>
 			</li>
 			<li class="nav-item">
-			<a class="nav-link" href="">Paid Links</a>
+			<a class="nav-link" href="{% url 'paid_links' %}">Paid Links</a>
 			</li>
 			<li class="nav-item">
 			<a class="nav-link" href="{% url 'booking' %}">Booking</a>
@@ -91,6 +91,7 @@
 			<img src="{% static 'home/images/add.png' %}" alt="add" title="Add a new link after this one." style="height: 30px; width: 30px;" onclick="addRow(this)">
 		</td>
 		<td class="cell100 column6">0</td>
+		<td></td>
 	</tr>
 {% for Link in links %}
 	<tr class="row100 body">
@@ -103,6 +104,7 @@
 			<img src="{% static 'home/images/add.png' %}" alt="add" title="Add a new link after this one." style="height: 30px; width: 30px;" onclick="addRow(this)">
 		</td>
 		<td class="cell100 column6">{{Link.sno}}</td>
+		<td></td>
 	</tr>
 {% endfor %}
 </tbody>
