@@ -1,0 +1,17 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+anticaptchaofficial = "==1.0.59"
+beautifulsoup4 = "==4.12.2"
+django = "==5.0"
+h11 = "==0.14.0"
+requests = "==2.31.0"
+selenium = "==4.16.0"
+
+[dev-packages]
+
+[requires]
+python_version = "3.11"
