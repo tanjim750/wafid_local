@@ -462,6 +462,8 @@ class MakeBooking(View):
             self.obj = DefaultBookinInfo.objects.create()
         if browser == "firefox":
             self.driver = webdriver.Firefox()
+        elif browser == "chrome":
+            self.driver = webdriver.Chrome()
         else:
             self.driver = webdriver.Edge()
 
@@ -696,7 +698,7 @@ class MakeBooking(View):
         
         return_url = self.driver.current_url
         count = 1
-        while (return_url == self.url and count < 3):
+        while (return_url == self.url and count < 4):
             self.solve_captcha(uuid)
             checkbox = self.driver.find_element(By.CSS_SELECTOR, "input[id=id_confirm]")
             # Find the parent div of the checkbox

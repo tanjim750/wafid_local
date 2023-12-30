@@ -297,7 +297,7 @@
 			
 			warning.style.color = 'green';
 			warning.textContent = "Loding: Please Wait ...";
-			button.setAttribute('disabled','true');
+			//button.setAttribute('disabled','true');
 
 			let endpoint = `${url}?start_from=${start_from}&end_to=${end_to}`;
 			
@@ -331,7 +331,7 @@
 				warning.textContent = "Enternal Error: "+error;
 			});
 
-			button.removeAttribute("disabled");	
+			//button.removeAttribute("disabled");	
 		}else{
 			warning.style.color = "red";
 			warning.textContent = "Please fill required fields";
