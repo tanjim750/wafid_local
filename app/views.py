@@ -20,6 +20,7 @@ from selenium.webdriver.firefox.firefox_binary import FirefoxBinary
 from selenium.webdriver.chrome.service import Service
 from anticaptchaofficial.recaptchav3proxyless import *
 
+
 class LoginView(View):
     def get(self, request):
         if request.user.is_authenticated:
@@ -454,19 +455,34 @@ class BookAgainView(View):
 
             
 class MakeBooking(View):
-    def __init__(self,browser):
+    def __init__(self,browser = None):
         obj = DefaultBookinInfo.objects.filter(id=1)
         if obj.exists():
             self.obj = obj.first()
         else:
             self.obj = DefaultBookinInfo.objects.create()
         if browser == "firefox":
-            self.driver = webdriver.Firefox()
+            options = webdriver.FirefoxOptions()
+            options.add_argument('--headless')
+            options.add_argument('--disable-gpu')
+            options.add_argument('--disable-dev-shm-usage')
+            options.add_argument('--no-sandbox')
+            self.driver = webdriver.Firefox(options=options)
         elif browser == "chrome":
-            self.driver = webdriver.Chrome()
+            options = webdriver.ChromeOptions()
+            options.add_argument('--headless')
+            options.add_argument('--disable-gpu')
+            options.add_argument('--disable-dev-shm-usage')
+            options.add_argument('--no-sandbox')
+            self.driver = webdriver.Chrome(options=options)
         else:
             # service = Service(executable_path='/media/tanjim/Tanjim/python/django/wafid/msedgedriver')
-            self.driver = webdriver.Edge()
+            options = webdriver.EdgeOptions()
+            options.add_argument('--headless')
+            options.add_argument('--disable-gpu')
+            options.add_argument('--disable-dev-shm-usage')
+            options.add_argument('--no-sandbox')
+            self.driver = webdriver.Edge(options=options)
 
         self.url = "https://wafid.com/book-appointment/"
         self.default_value()
@@ -647,6 +663,7 @@ class MakeBooking(View):
 
         # Find all matches in the page source
         uuid = uuid_pattern.findall(page_source)[0]
+        print(uuid)
         
         self.driver.find_element(By.NAME, "country").send_keys(self.country)
         time.sleep(0.5)
