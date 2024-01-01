@@ -465,6 +465,7 @@ class MakeBooking(View):
         elif browser == "chrome":
             self.driver = webdriver.Chrome()
         else:
+            # service = Service(executable_path='/media/tanjim/Tanjim/python/django/wafid/msedgedriver')
             self.driver = webdriver.Edge()
 
         self.url = "https://wafid.com/book-appointment/"
