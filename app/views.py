@@ -657,7 +657,7 @@ class MakeBooking(View):
         self.driver.get(self.url)
         self.set_cookie()
         page_source = self.driver.page_source
-        
+        print(page_source.title)
         # Define a regular expression pattern for UUIDs
         uuid_pattern = re.compile(r'data-widget-uuid="([^"]+)"')
 
