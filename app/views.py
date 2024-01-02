@@ -491,10 +491,10 @@ class MakeBooking(View):
             options.add_experimental_option("excludeSwitches", ["enable-logging", "enable-automation"])
             options.add_experimental_option('useAutomationExtension', False)
             options.add_argument("--disable-blink-features=AutomationControlled")
-            options.add_argument('--headless')
-            options.add_argument('--disable-gpu')
-            options.add_argument('--disable-dev-shm-usage')
-            options.add_argument('--no-sandbox')
+            # options.add_argument('--headless')
+            # options.add_argument('--disable-gpu')
+            # options.add_argument('--disable-dev-shm-usage')
+            # options.add_argument('--no-sandbox')
             user_agent = "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/116.0.0.0 Safari/537.36 Edg/116.0.1938.69"
             options.add_argument(f"user-agent={user_agent}")
             self.driver = webdriver.Edge(options=options)
@@ -731,18 +731,19 @@ class MakeBooking(View):
         return_url = self.driver.current_url
         count = 1
         while (return_url == self.url and count < 4):
-            self.solve_captcha(uuid)
+            # self.solve_captcha(uuid)
             checkbox = self.driver.find_element(By.CSS_SELECTOR, "input[id=id_confirm]")
             # Find the parent div of the checkbox
             parent_div = checkbox.find_element(By.XPATH, "./..")
             # Click on the label inside the parent div
             label = parent_div.find_element(By.TAG_NAME, "label")
             label.click()
+            time.sleep(1)
             submit_btn = self.driver.find_element(By.CSS_SELECTOR, "button[type='submit']")
             submit_btn.click()
             return_url = self.driver.current_url
             count += 1
-            time.sleep(3)
+            time.sleep(2)
 
 
         if "/pay/" in return_url:
