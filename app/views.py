@@ -17,7 +17,7 @@ from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import Select
 from selenium.webdriver.firefox.firefox_binary import FirefoxBinary
-from selenium.webdriver.chrome.service import Service
+from selenium.webdriver.edge.service import Service
 from anticaptchaofficial.recaptchav3proxyless import *
 
 
@@ -478,11 +478,13 @@ class MakeBooking(View):
         else:
             # service = Service(executable_path='/media/tanjim/Tanjim/python/django/wafid/msedgedriver')
             options = webdriver.EdgeOptions()
-            options.add_argument('--headless')
-            options.add_argument('--disable-gpu')
-            options.add_argument('--disable-dev-shm-usage')
-            options.add_argument('--no-sandbox')
-            self.driver = webdriver.Edge(options=options)
+            # options.add_argument('--headless')
+            # options.add_argument('--disable-gpu')
+            # options.add_argument('--disable-dev-shm-usage')
+            # options.add_argument('--no-sandbox')
+            edge_path = r"c:/wafid/wafid_local/msedgedriver.exe"
+            service = Service(executable_path=edge_path)
+            self.driver = webdriver.Edge(options=options, service=service)
 
         self.url = "https://wafid.com/book-appointment/"
         self.default_value()
@@ -657,7 +659,6 @@ class MakeBooking(View):
         self.driver.get(self.url)
         self.set_cookie()
         page_source = self.driver.page_source
-        print(str(page_source))
         # Define a regular expression pattern for UUIDs
         uuid_pattern = re.compile(r'data-widget-uuid="([^"]+)"')
 
