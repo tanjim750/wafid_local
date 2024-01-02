@@ -18,6 +18,8 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import Select
 from selenium.webdriver.firefox.firefox_binary import FirefoxBinary
 from selenium.webdriver.edge.service import Service
+from selenium.webdriver.chrome.service import Service as ChromeService
+from webdriver_manager.chrome import ChromeDriverManager
 from anticaptchaofficial.recaptchav3proxyless import *
 
 
@@ -474,7 +476,7 @@ class MakeBooking(View):
             options.add_argument('--disable-gpu')
             options.add_argument('--disable-dev-shm-usage')
             options.add_argument('--no-sandbox')
-            self.driver = webdriver.Chrome(options=options)
+            self.driver = webdriver.Chrome(options=options,service=ChromeService(ChromeDriverManager().install()))
         else:
             # service = Service(executable_path='/media/tanjim/Tanjim/python/django/wafid/msedgedriver')
             options = webdriver.EdgeOptions()
