@@ -465,10 +465,13 @@ class MakeBooking(View):
             self.obj = DefaultBookinInfo.objects.create()
         if browser == "firefox":
             options = webdriver.FirefoxOptions()
+            options.add_argument("--disable-blink-features=AutomationControlled")
             options.add_argument('--headless')
             options.add_argument('--disable-gpu')
             options.add_argument('--disable-dev-shm-usage')
             options.add_argument('--no-sandbox')
+            user_agent = "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/116.0.0.0 Safari/537.36"
+            options.add_argument(f"user-agent={user_agent}")
             self.driver = webdriver.Firefox(options=options)
         elif browser == "chrome":
             options = webdriver.ChromeOptions()
@@ -479,18 +482,21 @@ class MakeBooking(View):
             options.add_argument('--disable-gpu')
             options.add_argument('--disable-dev-shm-usage')
             options.add_argument('--no-sandbox')
+            user_agent = "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/116.0.0.0 Safari/537.36"
+            options.add_argument(f"user-agent={user_agent}")
             self.driver = webdriver.Chrome(options=options,service=ChromeService(ChromeDriverManager().install()))
-            self.driver.execute_cdp_cmd('Network.setUserAgentOverride', {
-                "userAgent": 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.53 Safari/537.36'})
         else:
             # service = Service(executable_path='/media/tanjim/Tanjim/python/django/wafid/msedgedriver')
             options = webdriver.EdgeOptions()
+            options.add_experimental_option("excludeSwitches", ["enable-logging", "enable-automation"])
+            options.add_experimental_option('useAutomationExtension', False)
+            options.add_argument("--disable-blink-features=AutomationControlled")
             options.add_argument('--headless')
             options.add_argument('--disable-gpu')
             options.add_argument('--disable-dev-shm-usage')
             options.add_argument('--no-sandbox')
-            edge_path = "/var/www/wafid_automation/wafid_local/msedgedriver"
-            service = Service(executable_path=edge_path)
+            user_agent = "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/116.0.0.0 Safari/537.36 Edg/116.0.1938.69"
+            options.add_argument(f"user-agent={user_agent}")
             self.driver = webdriver.Edge(options=options)
 
         self.url = "https://wafid.com/book-appointment/"
@@ -540,7 +546,7 @@ class MakeBooking(View):
         solver = recaptchaV3Proxyless()
         solver.set_verbose(1)
         solver.set_key(api_key)
-        solver.set_website_url(self.url)
+        solver.set_website_url("https://wafid.com")
         solver.set_website_key(uuid)
 
         # Your Selenium script here...
@@ -789,7 +795,14 @@ class AddToTab(View):
             for obj in wafid_link:
                 link = obj.link
                 
-                driver = webdriver.Edge()
+                options = webdriver.EdgeOptions()
+                options.add_argument('--headless')
+                options.add_argument('--disable-gpu')
+                options.add_argument('--disable-dev-shm-usage')
+                options.add_argument('--no-sandbox')
+                user_agent = "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/116.0.0.0 Safari/537.36 Edg/116.0.1938.69"
+                options.add_argument(f"user-agent={user_agent}")
+                driver = webdriver.Edge(options=options)
 
                 self.pay_instance.add_to_tab(link,driver)
                 self.context["links"].append(
