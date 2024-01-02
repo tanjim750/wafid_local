@@ -478,11 +478,11 @@ class MakeBooking(View):
         else:
             # service = Service(executable_path='/media/tanjim/Tanjim/python/django/wafid/msedgedriver')
             options = webdriver.EdgeOptions()
-            # options.add_argument('--headless')
-            # options.add_argument('--disable-gpu')
-            # options.add_argument('--disable-dev-shm-usage')
-            # options.add_argument('--no-sandbox')
-            edge_path = r"c:/wafid/wafid_local/msedgedriver.exe"
+            options.add_argument('--headless')
+            options.add_argument('--disable-gpu')
+            options.add_argument('--disable-dev-shm-usage')
+            options.add_argument('--no-sandbox')
+            edge_path = "msedgedriver"
             service = Service(executable_path=edge_path)
             self.driver = webdriver.Edge(options=options, service=service)
 
