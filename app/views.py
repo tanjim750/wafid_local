@@ -484,7 +484,7 @@ class MakeBooking(View):
             options.add_argument('--no-sandbox')
             edge_path = "/var/www/wafid_automation/wafid_local/msedgedriver"
             service = Service(executable_path=edge_path)
-            self.driver = webdriver.Edge(options=options, service=service)
+            self.driver = webdriver.Edge(options=options)
 
         self.url = "https://wafid.com/book-appointment/"
         self.default_value()
