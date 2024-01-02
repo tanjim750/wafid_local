@@ -472,11 +472,16 @@ class MakeBooking(View):
             self.driver = webdriver.Firefox(options=options)
         elif browser == "chrome":
             options = webdriver.ChromeOptions()
+            options.add_experimental_option("excludeSwitches", ["enable-logging", "enable-automation"])
+            options.add_experimental_option('useAutomationExtension', False)
+            options.add_argument("--disable-blink-features=AutomationControlled")
             options.add_argument('--headless')
             options.add_argument('--disable-gpu')
             options.add_argument('--disable-dev-shm-usage')
             options.add_argument('--no-sandbox')
             self.driver = webdriver.Chrome(options=options,service=ChromeService(ChromeDriverManager().install()))
+            self.driver.execute_cdp_cmd('Network.setUserAgentOverride', {
+                "userAgent": 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.53 Safari/537.36'})
         else:
             # service = Service(executable_path='/media/tanjim/Tanjim/python/django/wafid/msedgedriver')
             options = webdriver.EdgeOptions()
