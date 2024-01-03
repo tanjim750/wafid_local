@@ -753,12 +753,41 @@ class MakeBooking(View):
             }
             context.update(booking)
         else:
+            page_source = self.driver.page_source
+            error = self.get_error_message()
             context = {
                 "status": 400,
-                "text": "Booking failed"
+                "text": error
             }
         self.driver.quit()
         return context
+    
+    def get_error_message(self):
+        page_source = self.driver.page_source
+        error_1 = "Error verifying reCAPTCHA, please try again."
+        error_2 = "You have to agree that all information entered are correct"
+        if error_1 in page_source:
+            return error_1
+        elif error_2 in page_source:
+            return error_2
+        else:
+            try:
+                error_div = self.driver.find_element(By.CLASS_NAME, "ui.error.message")
+                error = error_div.text
+                return error
+            except:
+                pass
+
+            try:
+                error_div = self.driver.find_element(By.CLASS_NAME, "field.error")
+                error = error_div.text
+                return error
+            except:
+                pass
+
+            return "Booking Failed. Unknown error"
+            
+            
 
 
 class AddToTab(View):

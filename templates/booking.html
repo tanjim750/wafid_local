@@ -86,6 +86,11 @@
               </button>
         </div>
     </div>
+    <div id="timer-popup" class="popup">
+        <div class="popup-content">
+            <h1>Wait for <span id="timer">00:00:35</span></h1>
+        </div>
+    </div>
     <form method="post" id="booking_form"> {% csrf_token %}
         <div class="row mt-5">
             <div class="col-md-4 mb-3">
@@ -236,10 +241,41 @@
         }
         if(fname.value === cfname.value && lname.value === clname.value && 
             dob.value === cdob.value && passport_num.value === cpassport_num.value && 
-            gender.value != "------" && marital_status.value != "------"){
+            gender.value != "------" && marital_status.value != "------")
+            {
                 form.submit()
+                displayTimer()
             }
     });
+
+    function displayTimer(){
+        // Set the date we're counting down to (35 seconds from now)
+        var countDownDate = new Date().getTime() + 35 * 1000;
+        document.getElementById("timer-popup").style.display = "block";
+        // Update the countdown every 1 second
+        var x = setInterval(function() {
+            // Get the current date and time
+            var now = new Date().getTime();
+
+            // Calculate the remaining time
+            var distance = countDownDate - now;
+
+            // Calculate hours, minutes, and seconds
+            var hours = Math.floor(distance / (1000 * 60 * 60));
+            var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            // Display the countdown
+            document.getElementById("timer").innerHTML = (hours < 10 ? "0" : "") + hours + ":"
+            + (minutes < 10 ? "0" : "") + minutes + ":" + (seconds < 10 ? "0" : "") + seconds;
+
+            // If the countdown is over, display a message
+            if (distance < 0) {
+            clearInterval(x);
+            document.getElementById("timer").innerHTML = "few seconds";
+            }
+        }, 1000); // Update every 1 second
+    }
 </script>
 
 <script>
