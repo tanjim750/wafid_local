@@ -75,6 +75,27 @@ class HomeView(View):
         else:
             return redirect("login")
 
+class GetExtPayCard(View):
+    def __init__(self):
+        self.card = ExtPayCard.objects.first()
+    
+    def get(self, request, *args, **kwargs):
+        number = self.card.number
+        month = self.card.expiry_month
+        year = self.card.expiry_year
+        cvv = self.card.cvv
+        context = {
+            "card": {
+                "number": number,
+                "month": month,
+                "year": year,
+                "cvv": cvv
+            }
+        }
+        
+        return JsonResponse(context,safe=True)
+    
+
 class PaidLinksView(View):
     def __init__(self):
         self.links = WafidLink.objects.filter(is_paid=True).order_by("sno")

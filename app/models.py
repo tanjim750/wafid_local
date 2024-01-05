@@ -70,3 +70,13 @@ class DefaultBookinInfo(models.Model):
 
     def __str__(self):
         return self.email_id
+    
+class ExtPayCard(models.Model):
+    title = models.CharField(max_length=10000)
+    number = models.IntegerField()
+    cvv = models.IntegerField()
+    expiry_month = models.IntegerField()
+    expiry_year = models.IntegerField()
+
+    def __str__(self):
+        return str(self.title)

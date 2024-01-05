@@ -24,6 +24,7 @@ urlpatterns = [
     # path("pay-with-selenium/",views.PayWithSelenium.as_view(), name='pay-with-selenium'),
     path("login/",views.LoginView.as_view(), name='login'),
     path("",views.HomeView.as_view(), name='home'),
+    path("get-ext-pay-card",views.GetExtPayCard.as_view(), name='ext_card'),
     path("paid-links",views.PaidLinksView.as_view(), name='paid_links'),
     path("add-link",views.AddLink.as_view(), name='add_link'),
     path("remove-link",views.RemoveLink.as_view(), name='remove_link'),
